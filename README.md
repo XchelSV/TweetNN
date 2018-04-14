@@ -1,3 +1,3 @@
 # TweetNN
 
-* *node* ** brain.js **
+* node brain.js
