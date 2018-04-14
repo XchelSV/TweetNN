@@ -1,7 +1,7 @@
 var  parser = {};
 
-var key_words = [ 'Robar','Robo','Seguridad','Inseguridad','Muerte','Accidente','Asalto','Delincuencia','Crimen','Automovilistico','Automovil','Coche','Auto','Aparatoso','Vehículo','Conductor','Avenida','Tránsito','Tráfico','Murieron','Murió','Chofer','Calle','Heridos','Heridas','Choque','Velocidad','Enfermedad','Tratamiento','Riesgo','Delictivos','Horrible','Depresión','Impacto','Sufrir','muerto','muertos','delincuentes','Ruta'];
-var no_key_words = ['Meade', 'política','chichis', 'candidato', 'elecciones', 'margarita','trump'];
+var key_words = [ 'Robar','Robo','Seguridad','Inseguridad','Muerte','Accidente','Asalto','Delincuencia','Crimen','Automovilistico','Automovil','Coche','Auto','Aparatoso','Vehículo','camioneta','Conductor','Avenida','Tránsito','Tráfico','Murieron','Murió','Chofer','Calle','Heridos','Heridas','Choque','Velocidad','Enfermedad','Tratamiento','Riesgo','Delictivos','Horrible','Depresión','Impacto','Sufrir','muerto','muertos','delincuentes','Ruta','SegurosBancomer','GNPSeguros','Qualitas_MX','atropellar','atropellan','aseguradora','víal','vial','carretera','carril','av','col'];
+var no_key_words = ['Meade', 'política','chichis', 'candidato', 'elecciones', 'margarita','trump', 'ecuador','bogota','colombia','pizza','VivirEsIncrible','cube','tropa','victoria','anaya','RicardoAnayaC','JoseAMeadek','cubanos','Perú'];
 
 
 parser.formatTrainingSet = function( trainingSet ){
@@ -13,10 +13,12 @@ parser.formatTrainingSet = function( trainingSet ){
 		trainingSet[i].tweet = trainingSet[i].tweet.replace('.' , '');
 		trainingSet[i].tweet = trainingSet[i].tweet.replace('/' , '');
 		trainingSet[i].tweet = trainingSet[i].tweet.replace(':' , '');
+		trainingSet[i].tweet = trainingSet[i].tweet.replace('!' , '');
+		trainingSet[i].tweet = trainingSet[i].tweet.replace('?' , '');
+		trainingSet[i].tweet = trainingSet[i].tweet.replace('¿' , '');
+		trainingSet[i].tweet = trainingSet[i].tweet.replace('¡' , '');
 		trainingSet[i].tweet = trainingSet[i].tweet.replace(/@/g , '');
 		trainingSet[i].tweet = trainingSet[i].tweet.replace(/#/g , '');
-		trainingSet[i].tweet = trainingSet[i].tweet.replace('_' , ' ');
-		trainingSet[i].tweet = trainingSet[i].tweet.replace('_' , ' ');
 		trainingSet[i].tweet = trainingSet[i].tweet.toLowerCase();
 
 		var splited = trainingSet[i].tweet.split(" ");
