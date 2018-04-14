@@ -1,19 +1,18 @@
-var brain = require('brainjs');
-var parser = require('./parser.js');
-var fs = require('fs');
+import trainedNN from './output-trainedmodel'
+const brain = require('brainjs');
+const parser = require('./parser.js');
+// const fs = require('fs');
+const ClassifyTweet = function(tweet){
+	//const obj = JSON.parse(fs.readFileSync('output-trainedmodel.json', 'utf8'));
 
-var nn = {};
-nn.ClassifyTweet = function(tweet){
-	var obj = JSON.parse(fs.readFileSync('output-trainedmodel.json', 'utf8'));
+	let net = new brain.NeuralNetwork();
+	net.fromJSON(trainedNN);
 
-	var net = new brain.NeuralNetwork();
-	net.fromJSON(obj);
+	const test_tweet = {tweet: tweet};
+	const formatted_test_tweet = parser.formatTestSet(test_tweet);
 
-	var test_tweet = {tweet: tweet};
-	var formatted_test_tweet = parser.formatTestSet(test_tweet);
-
-	var output = net.run(formatted_test_tweet);
-	console.log(output);
+	const output = net.run(formatted_test_tweet);
+	console.info('Precision %f%', output[0]*100);
 
 	if(output >= 0.6){
 		return true;
@@ -23,4 +22,4 @@ nn.ClassifyTweet = function(tweet){
 	}
 }
 
-module.exports = nn;
+export default ClassifyTweet;

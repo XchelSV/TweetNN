@@ -1,3 +1,4 @@
+export default [
 {
 	"statuses": [
 		{
@@ -739,3 +740,6 @@
 		
 	]
 }
+
+]
+
